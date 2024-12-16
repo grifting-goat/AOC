@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "sstream": "cpp",
+        "iosfwd": "cpp",
+        "xutility": "cpp",
+        "vector": "cpp"
+    }
+}
