@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "unordered_set": "cpp",
+        "utility": "cpp",
+        "queue": "cpp",
+        "type_traits": "cpp",
+        "xhash": "cpp",
+        "sstream": "cpp"
+    }
+}

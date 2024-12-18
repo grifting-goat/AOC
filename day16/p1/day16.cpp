@@ -1,5 +1,5 @@
 //i now have done a dijikstras .. i dont want to any more
-//the tuple has i stole from internets, i didnt need to use tuples i just wanted to learn them
+//the tuple hash i stole from internets, i didnt need to use tuples i just wanted to learn them
 
 
 #include<iostream>
@@ -17,8 +17,10 @@ string fileName = "input.txt";
 
 pair<int,int> directions[4] = {{1,0},{0,1},{-1,0},{0,-1}};
 
+//dijikstras algorithm mixed with a minheap and the rambling of a crazy person
 int minCost(int x,int y, int dir, vector<vector<char>> mat);
 
+//check if allowed to go there
 bool isValid(int x,int y,vector<vector<char>> map);
 
 template <class T>
@@ -92,33 +94,35 @@ int main () {
         cout << endl;
     }
 
+    //calc the min cost to traverse the map
     cout << minCost(rX,rY, dir, mat);
 }
 
-
 int minCost(int x,int y, int dir, vector<vector<char>> mat) {
-    priority_queue<pair<int, tuple<int,int,int>>, vector<pair<int, tuple<int,int,int>>>, greater<pair<int, tuple<int, int,int>>>> pq;
+    priority_queue<pair<int, tuple<int,int,int>>, vector<pair<int, tuple<int,int,int>>>, greater<pair<int, tuple<int, int,int>>>> pq; //min heap
+    unordered_set<tuple<int, int, int>> visited; //did we already go here
+    unordered_map<tuple<int, int, int>, int, hash<tuple<int, int, int>>> cost_map; //the costs to reach each node
     pq.push({0,{x,y,dir}});
-    unordered_set<tuple<int, int, int>> visited;
-    unordered_map<tuple<int, int, int>, int, hash<tuple<int, int, int>>> cost_map;
     cost_map[{x, y, dir}] = 0;
 
     while (!pq.empty()) {
         auto top = pq.top(); pq.pop();
         
+        //this looks familiar
         if (visited.find(top.second) != visited.end()) continue;
 
         visited.insert(top.second);
 
-        //nameing   
+        //nameing things  
         pair <int,int> coors = {get<0>(top.second), get<1>(top.second)};
         dir = get<2>(top.second);
         pair<int,int> newD = directions[dir];
         int dx = coors.first;
         int dy = coors.second;
         int cost = top.first;
-        //cout << "<" << dx << ", " << dy << "> with cost:" << top.first << endl;
 
+
+        //cout << "<" << dx << ", " << dy << "> with cost:" << top.first << endl;
 
         //did win?
         if (mat[dy][dx] == 'E') {
@@ -156,7 +160,7 @@ int minCost(int x,int y, int dir, vector<vector<char>> mat) {
 
     }
 
-    return -1;
+    return -1; //something bad happened
 }
 
 bool isValid(int x,int y,vector<vector<char>> map) {

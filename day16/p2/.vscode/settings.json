@@ -1,13 +1,5 @@
 {
     "files.associations": {
-        "vector": "cpp",
-        "utility": "cpp",
-        "xhash": "cpp",
-        "queue": "cpp",
-        "span": "cpp",
-        "format": "cpp",
-        "unordered_set": "cpp",
-        "xlocale": "cpp",
-        "iostream": "cpp"
+        "utility": "cpp"
     }
 }
