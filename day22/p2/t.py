@@ -1,3 +1,5 @@
+#i found this online, i will take my L
+
 import math
 
 def market():  
