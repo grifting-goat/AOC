@@ -98,7 +98,6 @@ int countShortestPath(unordered_set<pair<int,int>,pair_hash<int, int>> destroyed
 
 }
 
-
 bool inBounds(pair<int,int> testCase) {
     if (testCase.first < 0 || testCase.first > ROWS || testCase.second < 0 || testCase.second > COLS) {
         return false;
